@@ -189,11 +189,11 @@ waveform-generator/
 
 ## 📚 Documentation
 
-- **[Hardware Setup Guide](docs/HARDWARE.md)** - Wiring diagrams and platform-specific setup
-- **[API Reference](docs/API.md)** - Complete function documentation  
-- **[Waveform Mathematics](docs/WAVEFORMS.md)** - Mathematical descriptions of all patterns
-- **[Oscilloscope XY Art](docs/OSCILLOSCOPE_ART.md)** - Create stunning visual displays
-- **[Performance Guide](docs/PERFORMANCE.md)** - Optimization tips and benchmarks
+- **[Hardware Setup Guide](docs/HARDWARE.md)** - Wiring diagrams and platform-specific setup - ToDo
+- **[API Reference](docs/API.md)** - Complete function documentation - ToDo
+- **[Waveform Mathematics](docs/WAVEFORMS.md)** - Mathematical descriptions of all patterns - ToDo
+- **[Oscilloscope XY Art](docs/OSCILLOSCOPE_ART.md)** - Create stunning visual displays - ToDo
+- **[Performance Guide](docs/PERFORMANCE.md)** - Optimization tips and benchmarks - ToDo
 
 ## 🎯 Use Cases
 
@@ -280,7 +280,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **🐛 Issues:** [GitHub Issues](https://github.com/s-celles/waveform-generator/issues)
 - **💬 Discussions:** [GitHub Discussions](https://github.com/s-celles/waveform-generator/discussions)  
-- **🌐 Website:** [GitHub Pages](https://s-celles.github.io/waveform-generator/)
+- **🌐 Website:** [GitHub Pages](https://s-celles.github.io/waveform-generator/) (To be release)
 
 ---
 
