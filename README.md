@@ -253,7 +253,6 @@ If this project helped you, please give it a ⭐! It helps others discover the t
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/waveform-generator/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/waveform-generator/discussions)
-- **Email**: your.email@example.com
 
 ---
 
