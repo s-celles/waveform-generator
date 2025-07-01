@@ -22,7 +22,7 @@ A powerful Python script that generates optimized C header files containing wave
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/waveform-generator.git
+git clone https://github.com/s-celles/waveform-generator.git
 cd waveform-generator
 
 # Generate 8-bit waveforms for Arduino
@@ -251,8 +251,8 @@ If this project helped you, please give it a ⭐! It helps others discover the t
 
 ## 📧 Contact
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/waveform-generator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/waveform-generator/discussions)
+- **Issues**: [GitHub Issues](https://github.com/s-celles/waveform-generator/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/s-celles/waveform-generator/discussions)
 
 ---
 
