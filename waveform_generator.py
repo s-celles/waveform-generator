@@ -179,7 +179,7 @@ class HeaderGenerator:
  * @file {filename}
  * @brief Waveform library for {self.gen.bits}-bit DACs
  * @author Waveform Generator Script
- * @date Generated automatically using https://github.com/s-celles/waveform_generator/
+ * @date Generated automatically using https://github.com/s-celles/waveform-generator/
  * 
  * This file contains {len(waveforms)} waveforms with {self.gen.array_size} {self.gen.bits}-bit values each.
  * Value range: 0 to {self.gen.max_value}
