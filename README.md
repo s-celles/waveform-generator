@@ -280,7 +280,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **🐛 Issues:** [GitHub Issues](https://github.com/s-celles/waveform-generator/issues)
 - **💬 Discussions:** [GitHub Discussions](https://github.com/s-celles/waveform-generator/discussions)  
-- **🌐 Website:** [GitHub Pages](https://s-celles.github.io/waveform-generator/) (To be release)
+- **🌐 Website:** [GitHub Pages](https://s-celles.github.io/waveform-generator/) (ToDo)
 
 ---
 
