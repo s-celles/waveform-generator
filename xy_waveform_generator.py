@@ -348,10 +348,10 @@ class XYHeaderGenerator:
 #define XY_MAX_VALUE {self.gen.max_value}
 #define XY_CENTER {self.gen.center}
 
-typedef enum {
+typedef enum {{
     XY_OK = 0,
     XY_NULL_POINTER_ERROR,
-} xy_status_t;
+}} xy_status_t;
 
 //=============================================================================
 // XY PATTERN DATA
@@ -434,9 +434,9 @@ static inline xy_status_t output_xy_pattern(xy_pattern_type_t pattern,
                                    void (*dac_x_func)({self.gen.data_type}),
                                    void (*dac_y_func)({self.gen.data_type}),
                                    uint16_t delay_us) {{
-    if (dac_x_func == NULL || dac_y_func == NULL) {
+    if (dac_x_func == NULL || dac_y_func == NULL) {{
         return XY_NULL_POINTER_ERROR;
-    }
+    }}
     for (uint16_t i = 0; i < XY_ARRAY_SIZE; i++) {{
         xy_point_t point = get_xy_point(pattern, i);
         dac_x_func(point.x);
