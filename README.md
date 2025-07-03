@@ -47,16 +47,16 @@ cd waveform-generator
 ### Generate Your First Waveforms
 ```bash
 # Basic 8-bit waveforms for Arduino
-python waveform_generator.py --bits 8 --size 256 --output arduino_waves.h
+python yt_waveform_generator.py --bits 8 --size 256 --output arduino_waves.h
 
 # 12-bit waveforms for STM32 DAC  
-python waveform_generator.py --bits 12 --size 512 --output stm32_waves.h
+python yt_waveform_generator.py --bits 12 --size 512 --output stm32_waves.h
 
 # XY patterns for oscilloscope art
 python xy_waveform_generator.py --patterns heart,rose_5,butterfly --output xy_art.h
 
 # See all available options
-python waveform_generator.py --list
+python yt_waveform_generator.py --list
 python xy_waveform_generator.py --list-patterns
 ```
 
@@ -170,7 +170,7 @@ ESP32 (built-in DACs):
 
 ```
 waveform-generator/
-├── 🐍 waveform_generator.py       # Main 1D waveform generator
+├── 🐍 yt_waveform_generator.py    # Main 1D waveform generator
 ├── 🎨 xy_waveform_generator.py    # XY pattern generator for oscilloscope art
 ├── 📁 examples/                   # Ready-to-use examples
 │   ├── 8bit/                      # Arduino-compatible (uint8_t)
