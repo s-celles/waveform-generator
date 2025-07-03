@@ -443,6 +443,7 @@ static inline xy_status_t output_xy_pattern(xy_pattern_type_t pattern,
         dac_y_func(point.y);
         // delay_microseconds(delay_us);  // Implement your delay function
     }}
+    return XY_OK;
 }}
 
 #endif // XY_WAVEFORMS_H
