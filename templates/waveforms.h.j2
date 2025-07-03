@@ -42,9 +42,13 @@ typedef enum {
  * @brief {{ waveform_data.description }}
  */
 const {{ data_type }} {{ name }}_wave[WAVE_ARRAY_SIZE] = {
+
+
 {%- for chunk in waveform_data.data | batch(16) %}
-    {% for value in chunk %}{{ "%{}d".format(max_value|string|length) | format(value) }}{% if not loop.last %}, {% endif %}{% endfor %}{% if not loop.last %},{% endif %}
+    {{ "    " }}{% for value in chunk %}{{ "%{}d".format(max_value|string|length) | format(value) }}{% if not loop.last %}, {% endif %}{% endfor %}{% if not loop.last %},
+{% endif -%}
 {%- endfor %}
+
 };
 
 {% endfor %}
