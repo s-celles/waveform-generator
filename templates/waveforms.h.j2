@@ -1,0 +1,166 @@
+/**
+ * @file {{ filename }}
+ * @brief Waveform library for {{ bits }}-bit DACs
+ * @author Waveform Generator Script
+ * @date Generated automatically using https://github.com/s-celles/waveform-generator/
+ * 
+ * This file contains {{ waveforms|length }} waveforms with {{ array_size }} {{ bits }}-bit values each.
+ * Value range: 0 to {{ max_value }}
+ * 
+ * Usage example:
+ *   #include "{{ filename }}"
+ *   
+ *   for(int i = 0; i < WAVE_ARRAY_SIZE; i++) {
+ *       dac_output(sine_wave[i]);
+ *       delay_us(100);
+ *   }
+ */
+
+#ifndef WAVEFORMS_H
+#define WAVEFORMS_H
+
+#include <stdint.h>
+
+// Configuration constants
+#define WAVE_ARRAY_SIZE {{ array_size }}
+#define WAVE_BITS {{ bits }}
+#define WAVE_MAX_VALUE {{ max_value }}
+#define WAVE_CENTER {{ center }}
+
+typedef enum {
+    WAVE_OK = 0,
+    WAVE_NULL_POINTER_ERROR,
+    WAVE_INDEX_OUT_OF_RANGE,
+} wave_status_t;
+
+//=============================================================================
+// WAVEFORM DATA
+//=============================================================================
+
+{% for name, waveform_data in waveforms.items() %}
+/**
+ * @brief {{ waveform_data.description }}
+ */
+const {{ data_type }} {{ name }}_wave[WAVE_ARRAY_SIZE] = {
+{%- for chunk in waveform_data.data | batch(16) %}
+    {% for value in chunk %}{{ "%{}d".format(max_value|string|length) | format(value) }}{% if not loop.last %}, {% endif %}{% endfor %}{% if not loop.last %},{% endif %}
+{%- endfor %}
+};
+
+{% endfor %}
+
+//=============================================================================
+// UTILITY ENUMS AND ARRAYS
+//=============================================================================
+
+/**
+ * @brief Waveform type enumeration
+ */
+typedef enum {
+{%- for name in waveforms.keys() %}
+    WAVE_{{ name.upper() }} = {{ loop.index0 }},
+{%- endfor %}
+    WAVE_COUNT = {{ waveforms|length }}  // Total number of waveforms
+} waveform_type_t;
+
+/**
+ * @brief Array of waveform pointers for easy access
+ */
+const {{ data_type }}* const waveforms[WAVE_COUNT] = {
+{%- for name in waveforms.keys() %}
+    {{ name }}_wave,
+{%- endfor %}
+};
+
+/**
+ * @brief Waveform names for debugging/display
+ */
+const char* const waveform_names[WAVE_COUNT] = {
+{%- for name in waveforms.keys() %}
+    "{{ name.replace('_', ' ').title() }} Wave",
+{%- endfor %}
+};
+
+/**
+ * @brief Get waveform value at specific index
+ * @param type Waveform type (0 to WAVE_COUNT-1)
+ * @param index Sample index (0 to WAVE_ARRAY_SIZE-1)
+ * @return {{ bits }}-bit sample value (0-{{ max_value }})
+ */
+static inline {{ data_type }} get_waveform_sample(waveform_type_t type, uint16_t index) {
+    if (type >= WAVE_COUNT || index >= WAVE_ARRAY_SIZE) {
+        return WAVE_CENTER; // Return center value for invalid params
+    }
+    return waveforms[type][index];
+}
+
+/**
+ * @brief Output waveform to DAC
+ * @param type Waveform type
+ * @param dac_func Function pointer for DAC output
+ * @param delay_us Delay between samples in microseconds
+ */
+static inline wave_status_t output_waveform(waveform_type_t type,
+                                  void (*dac_func)({{ data_type }}),
+                                  uint16_t delay_us) {
+    if (dac_func == NULL) {
+        return WAVE_NULL_POINTER_ERROR;
+    }
+    if (type >= WAVE_COUNT) {
+        return WAVE_INDEX_OUT_OF_RANGE;
+    }
+    
+    for (uint16_t i = 0; i < WAVE_ARRAY_SIZE; i++) {
+        dac_func(waveforms[type][i]);
+        // delay_microseconds(delay_us);  // Implement your delay function
+    }
+    return WAVE_OK;
+}
+
+/**
+ * @brief Get waveform statistics
+ * @param type Waveform type
+ * @param min_val Pointer to store minimum value
+ * @param max_val Pointer to store maximum value
+ * @param avg_val Pointer to store average value
+ * @return Status code
+ */
+static inline wave_status_t get_waveform_stats(waveform_type_t type,
+                                     {{ data_type }}* min_val,
+                                     {{ data_type }}* max_val,
+                                     {{ data_type }}* avg_val) {
+    if (type >= WAVE_COUNT) {
+        return WAVE_INDEX_OUT_OF_RANGE;
+    }
+    
+    const {{ data_type }}* wave = waveforms[type];
+    {{ data_type }} min_v = wave[0];
+    {{ data_type }} max_v = wave[0];
+    uint32_t sum = 0;
+    
+    for (uint16_t i = 0; i < WAVE_ARRAY_SIZE; i++) {
+        {{ data_type }} val = wave[i];
+        if (val < min_v) min_v = val;
+        if (val > max_v) max_v = val;
+        sum += val;
+    }
+    
+    if (min_val) *min_val = min_v;
+    if (max_val) *max_val = max_v;
+    if (avg_val) *avg_val = ({{ data_type }})(sum / WAVE_ARRAY_SIZE);
+    
+    return WAVE_OK;
+}
+
+#endif // WAVEFORMS_H
+
+/*
+ * Generated with Waveform Generator:
+ * - Bits: {{ bits }}
+ * - Array size: {{ array_size }}
+ * - Data type: {{ data_type }}
+ * - Value range: 0-{{ max_value }}
+ * - Waveforms: {{ waveforms|length }}
+ * 
+ * Memory usage: ~{{ (waveforms|length * array_size * (bits // 8 if bits % 8 == 0 else (bits // 8) + 1)) }} bytes
+ */
