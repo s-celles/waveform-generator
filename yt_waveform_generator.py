@@ -416,7 +416,7 @@ def main():
         "--size", type=int, default=256, help="Array size (number of samples)"
     )
     parser.add_argument(
-        "--output", type=str, default="output/waveforms.h", help="Output filename"
+        "--output", type=str, default="examples/8bit/yt_waveforms.h", help="Output filename"
     )
     parser.add_argument(
         "--template", type=str, default="waveforms.h.j2", help="Template filename"

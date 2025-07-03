@@ -553,7 +553,7 @@ def main():
         "--size", type=int, default=256, help="Array size (number of samples)"
     )
     parser.add_argument(
-        "--output", type=str, default="output/xy_patterns.h", help="Output filename"
+        "--output", type=str, default="examples/8bit/xy_waveforms.h", help="Output filename"
     )
     parser.add_argument(
         "--patterns",
